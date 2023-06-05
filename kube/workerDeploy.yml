@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-spring-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-spring-app
+  template:
+    metadata:
+      labels:
+        app: my-spring-app # Added the labels here
+    spec:
+      containers:
+        - name: my-spring-app-container-1
+          image: ecuriotto/worker:latest
+          volumeMounts:
+            - name: config-volume-1
+              mountPath: /config/application.yml
+              subPath: application.yml
+          command: ["java", "-jar", "worker.jar", "--spring.config.location=file:/config/application.yml"]
+        - name: my-spring-app-container-2
+          image: ecuriotto/worker:latest
+          volumeMounts:
+            - name: config-volume-2
+              mountPath: /config/application.yml
+              subPath: application.yml
+          command: ["java", "-jar", "worker.jar", "--spring.config.location=file:/config/application.yml"]
+        - name: my-spring-app-container-3
+          image: ecuriotto/worker:latest
+          volumeMounts:
+            - name: config-volume-3
+              mountPath: /config/application.yml
+              subPath: application.yml
+          command: ["java", "-jar", "worker.jar", "--spring.config.location=file:/config/application.yml"]
+      volumes:
+        - name: config-volume-1
+          configMap:
+            name: my-spring-app-config-pod1
+        - name: config-volume-2
+          configMap:
+            name: my-spring-app-config-pod2
+        - name: config-volume-3
+          configMap:
+            name: my-spring-app-config-pod3

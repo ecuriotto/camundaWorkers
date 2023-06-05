@@ -1,0 +1,3 @@
+kube/secret.yml
+kube/ingress.yml
+.vscode

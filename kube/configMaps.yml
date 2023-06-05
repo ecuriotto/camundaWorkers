@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-spring-app-config-pod1
+data:
+  application.yml: |
+    # Contents of application.yml for pod 1
+    camunda.bpm.client:
+      base-url: https://enrico.consulting-sandbox.camunda.cloud/engine-rest
+      max-tasks: 1
+      lock-duration: 20000
+      worker-id: worker-1
+    logging:
+      level:
+        "[org.apache.http]": INFO
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-spring-app-config-pod2
+data:
+  application.yml: |
+    camunda.bpm.client:
+      base-url: https://enrico.consulting-sandbox.camunda.cloud/engine-rest
+      max-tasks: 1
+      lock-duration: 20000
+      worker-id: worker-2
+    logging:
+      level:
+        "[org.apache.http]": INFO
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-spring-app-config-pod3
+data:
+  application.yml: |
+    # Contents of application.yml for pod 1
+    camunda.bpm.client:
+      base-url: https://enrico.consulting-sandbox.camunda.cloud/engine-rest
+      max-tasks: 1
+      lock-duration: 20000
+      worker-id: worker-3
+    logging:
+      level:
+        "[org.apache.http]": INFO

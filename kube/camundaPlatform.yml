@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camunda-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camunda
+  template:
+    metadata:
+      labels:
+        app: camunda
+    spec:
+      containers:
+        - name: camunda-container
+          image: camunda/camunda-bpm-platform:run-latest
+          ports:
+            - containerPort: 8080
